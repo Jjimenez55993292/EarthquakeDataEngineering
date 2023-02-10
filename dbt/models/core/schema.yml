@@ -1,0 +1,9 @@
+# version: 2 
+
+# sources:
+#   - name: stg
+#     database: top-cascade-372816
+#     schema: dbt_andy_nelson
+
+#     tables: 
+#     - name: stg_earthquake

@@ -1,0 +1,9 @@
+version: 2 
+
+sources:
+  - name: raw
+    database: top-cascade-372816
+    schema: raw_usgs_earthquakes
+
+    tables: 
+    - name: raw_earthquakes
