@@ -3,12 +3,10 @@
 This project automatically ingests, stores, transforms the latest seismic activity data from the USGS (United States Geologic Society) for later analysis.
 
 
-![Data Pipeline Architecture](https://github.com/ANelson82/de_zoomcamp_2022_earthquake_capstone/blob/main/images/architecture_earthquake.excalidraw.png)
+![Data Pipeline Architecture](https://github.com/Jjimenez55993292/EarthquakeDataEngineering/blob/main/images/architecture_earthquake.excalidraw.png)
 
 # Dashboard
-[Earthquake Capstone Project Google Looker Studio](https://datastudio.google.com/reporting/d545276d-bc78-4f66-806a-7218411a4ea9)
-[![Data Pipeline Architecture](https://github.com/ANelson82/de_zoomcamp_2022_earthquake_capstone/blob/main/images/dashboard.png)](https://datastudio.google.com/reporting/d545276d-bc78-4f66-806a-7218411a4ea9)
-
+![Data Pipeline Architecture](https://github.com/Jjimenez55993292/EarthquakeDataEngineering/blob/main/images/dashboard.png)
 
 <!-- # Presentation
 #todo
@@ -42,7 +40,7 @@ https://earthquake.usgs.gov/fdsnws/event/1/query?format={format}&starttime={yyyy
 The [geojson](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php) data format was used in this project.
 
 - Example of json response:
-![USGS API json Example](https://github.com/ANelson82/de_zoomcamp_2022_earthquake_capstone/blob/main/images/usgs_api_json.jpg)
+![USGS API json Example](https://github.com/Jjimenez55993292/EarthquakeDataEngineering/blob/main/images/usgs_api_json.jpg)
 
 # Data Transformation
 - The [REST API json response](de_zoomcamp_2022_earthquake_capstone/sample_data/sample_earthquake_response.json) comes as a nested json structure. 
@@ -50,7 +48,7 @@ The [geojson](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php) dat
 - This array was turned into a [Pandas dataframe](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html).
 - Additional columns were created that converted the UNIX or POSIX time (ms) into datetime objects.
 
-- Example of Flattened data ![USGS API json Example](https://github.com/ANelson82/de_zoomcamp_2022_earthquake_capstone/blob/main/images/flattened_data.png)
+- Example of Flattened data ![USGS API json Example](https://github.com/Jjimenez55993292/EarthquakeDataEngineering/blob/main/images/flattened_data.png)
 
 # Data Modeling
 - The data was denormalized and modeled using the One Big Table(OBT) method. 
@@ -60,7 +58,7 @@ The [geojson](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php) dat
 # Data Storage
 - Both the raw json's and flattened parquet files are stored in a [datalake](https://en.wikipedia.org/wiki/Data_lake) in Google Cloud Storage bucket(GCS) 
 
-![Data Lake](https://github.com/ANelson82/de_zoomcamp_2022_earthquake_capstone/blob/main/images/datalake.png)
+![Data Lake](https://github.com/Jjimenez55993292/EarthquakeDataEngineering/blob/main/images/datalake.png)
 
 # Airflow Orchestration 
 The DAG does the following on a '@daily' schedule:
@@ -75,7 +73,7 @@ The DAG does the following on a '@daily' schedule:
 - Runs the dbt models using ['dbt_run'](https://docs.getdbt.com/reference/commands/run) command with the [BashOperator](https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/bash.html).
 
 ### Airflow DAG
-![Airflow DAG](https://github.com/ANelson82/de_zoomcamp_2022_earthquake_capstone/blob/main/images/dag_graph.png)
+![Airflow DAG](https://github.com/Jjimenez55993292/EarthquakeDataEngineering/blob/main/images/datalake.png)
 
 # dbt Transformation
 - dbt was used to take the `raw_earthquakes` data from BigQuery native table and deduplicate the data using a [SQL window function](https://en.wikipedia.org/wiki/Window_function_(SQL)).  
@@ -112,7 +110,7 @@ where rn = 1
 ```
 ### dbt Lineage Graph
 - dbt has a built in tool used to visually show data lineage as it travels across the data layers: raw -> stage -> final
-![dbt Lineage Graph](https://github.com/ANelson82/de_zoomcamp_2022_earthquake_capstone/blob/main/images/dbt_lineage_graph.png)
+![dbt Lineage Graph](https://github.com/Jjimenez55993292/EarthquakeDataEngineering/blob/main/images/dbt_lineage_graph.png)
 
 # Visualization
 - With the fact_table materialized in a partitioned BigQuery native table, the data can now be viewed in [Google Looker Studio (formerly Data Studio)](https://lookerstudio.google.com/)
@@ -122,9 +120,9 @@ where rn = 1
 3. Create the dashboard.
 
 
-![Step1](https://github.com/ANelson82/de_zoomcamp_2022_earthquake_capstone/blob/main/images/looker_step1.png)
-![Step2](https://github.com/ANelson82/de_zoomcamp_2022_earthquake_capstone/blob/main/images/looker_step2.png)
-![Step3](https://github.com/ANelson82/de_zoomcamp_2022_earthquake_capstone/blob/main/images/looker_step3.png)
+![Step1](https://github.com/Jjimenez55993292/EarthquakeDataEngineering/blob/main/images/looker_step1.png)
+![Step2](https://github.com/Jjimenez55993292/EarthquakeDataEngineering/blob/main/images/looker_step2.png)
+![Step3](https://github.com/Jjimenez55993292/EarthquakeDataEngineering/blob/main/images/looker_step3.png)
 
 # Future Work That Could Be Done
 1. Testing: [dbt testing](https://docs.getdbt.com/docs/build/tests), [airflow testing](https://docs.astronomer.io/learn/testing-airflow)
@@ -151,20 +149,6 @@ The final dashboard was conected to this BigQuery Table.
 Lastly, the cloud resources were archived and exported to Terraform HCL code using [GCP gcloud beta resource-config bulk-export](https://cloud.google.com/docs/terraform/resource-management/export#export_the_entire_project_configuration_to_terraform_hcl_code).
 
 
-# Acknowledgements
-Thanks to the instructors.
-- [Alexey Grigorev](https://github.com/alexeygrigorev)
-- [Sejal Vaidya](https://github.com/sejalv)
-- [Victoria Perez Mola](https://github.com/Victoriapm)
-- [Ankush Khanna](https://github.com/AnkushKhanna)
-
-And my employer and teammates.
-- [evolv Consulting](https://evolv.consulting/)
-<!-- ![evolv](https://github.com/ANelson82/de_zoomcamp_2022_earthquake_capstone/blob/main/images/evolv.jfif) -->
-<img src="https://github.com/ANelson82/de_zoomcamp_2022_earthquake_capstone/blob/main/images/evolv.jfif" alt="evolv" width="200"/>
-
-### LinkedIn
-- [My Linkedin](https://www.linkedin.com/in/andynelson1982/)
 
 <!-- # Helpful Resources
 1. Data Engineering Resource Gathering
