@@ -6,7 +6,7 @@ This project automatically ingests, stores, transforms the latest seismic activi
 ![Data Pipeline Architecture](https://github.com/Jjimenez55993292/EarthquakeDataEngineering/blob/main/images/architecture_earthquake.excalidraw.png)
 
 # Dashboard
-![Data Pipeline Architecture](https://github.com/Jjimenez55993292/EarthquakeDataEngineering/blob/main/images/dashboard.png)
+![Data Pipeline Architecture](https://github.com/Jjimenez55993292/EarthquakeDataEngineering/blob/main/images/dashboard1.png)
 
 <!-- # Presentation
 #todo
